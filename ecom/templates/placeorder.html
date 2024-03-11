@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel = "stylesheet" href = "static/css/bootstrap.min.css">
+    <link rel = "stylesheet" href = "static/css/style.css">
+    
+    <ink rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><b>Ekart</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="product">Products</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="register">Register</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Product Types
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Clothes</a></li>
+                            <li><a class="dropdown-item" href="#">Grocery</a></li>
+                            <li><a class="dropdown-item" href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+            <div class="container">
+                <div class="row p-4">
+                    <div class="col-md-8 mt-4 mb-4">
+                        <div class="row show p-3">
+                            <div class="shadow p-3 bg-danger">
+                               <h4>Order Summary</h4> 
+                             
+                            </div> 
+
+                            {% for o in orders %}
+                            <div class="col-sm-3 shadow p-3">
+
+                                <img src ="{{ o.pid.image.url }}" style="height: 200px; width: 100%;">
+
+                                
+                            </div>   <!--end of image -->
+
+                            <div class="col-sm-9 shadow p-3">
+                                <p><strong>Product Name </strong>{{ o.pid.name }}</p>
+                                <p><strong>Product Category </strong>{{ o.pid.cat }}</p>
+                                <p><strong>Quantity </strong>{{ o.qty }}</p>
+                                <a href = "order{{ o.id }}" class = "btn btn-danger">Remove</a>
+                            </div>   
+                             <!--end of product 1 -->
+                             {% endfor %}
+                        </div>
+                    
+                    </div>  <!--end of product lists -->
+                          
+
+                    <div class="col-md-4 mt-4 mb-4 shadow p-3">
+                        <h4> Price Details</h4>
+                        <hr>
+                        
+                        <p> <strong> price( {{ n }} items )</strong> Rs.{{ tamt }}</p>
+                        <p> <strong> Total Amount:</strong> Rs.{{ tamt }}</p>
+                        <a style=text-align:right; href="makepayment" class="btn btn-primary" >Make Payment</a>
+                    </div> 
+                  
+                   
+                </div>
+
+                
+
+            </div>
+
+
+
+
+
+
+         <!-- Footerr Start -->
+ <div class="row ">
+    <div class="col-md-4 bg-dark subtle p-3">
+            <div class="container text">
+                <h5 class="text-white" style="text-align: center;"> Address</h5>
+                <hr> 
+                    <p class="text-white">  ITVEDANT,LandMark Building, <br>
+                    Behind Starbucks, FC Road, <br>
+                    Pune, <br>
+                    Maharashtra, <br>
+                    411051 </p>
+            </div>
+    </div>   <!--End of address -->
+
+    <div class="col-md-4 bg-dark subtle p-3">
+            
+            <h5 class="text-white">Quick Links</h5>
+            <hr>
+            <p><a href = "#" class = "anchor">Products</a></p>
+            <p><a href = "#" class = "anchor">About</a></p>
+            <p><a href = "#" class = "anchor">Contact</a></p>
+            <p><a href = "#" class = "anchor">Register</a></p>
+       
+
+    </div>   <!--End of quicklinks-->
+    <div class="col-md-4 bg-dark subtle p-3">
+        <h5 class = "text-white">Connect Us</h5>
+        <hr>
+        
+       <h5 class = "social"><a href = "http://www.facebook.com" target = "_blank"><i class="bi bi-facebook"></i></a> </h5>
+       <h5 class = "social"><a href = "http://www.instagram.com" target = "_blank"><i class="bi bi-instagram"></i></a> </h5>
+       <h5 class = "social"><a href = "http://www.twitter.com" target = "_blank"><i class="bi bi-twitter"></i></a> </h5>
+       <h5 class = "social"><a href = "http://www.linkedin.com" target = "_blank"><i class="bi bi-linkedin"></i></a> </h5>
+    </div>  <!--end of social media icons -->
+</div>
+
+
+    <!-- <script src = "static/js/bootstrap.min.js" ></script>
+    <script src = "static/js/popper.js"></script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>
